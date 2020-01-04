@@ -2,7 +2,7 @@
 Applied Math 585, Winter Quarter 2020
 
 The [Class webpage](http://staff.washington.edu/rjl/classes/am585w2020/)
-is build using the files in the `sphinx` directory, using [sphinx](http://sphinx-doc.org/).
+is built using the files in the `sphinx` directory, using [sphinx](http://sphinx-doc.org/).
 
 You can view rendered versions of the Jupyter notebooks from this repository at 
 [this link](https://rjleveque.github.io/amath585w2020/notebooks/html/Index.html),

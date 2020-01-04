@@ -26,7 +26,8 @@ if 1:
 
     # filter out those not mentioned in the Index, if desired:
     index_file = open('Index.ipynb').read()
-    notebooks = [f for f in notebooks if f+'.ipynb' in index_file]
+    notebooks = ['Index'] + \
+                [f for f in notebooks if f+'.ipynb' in index_file]
 
 if 0:
     # test or remake one notebook:

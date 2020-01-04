@@ -10,6 +10,10 @@ and the html files are also in the directory `notebooks/html`.  Note that
 interactive widgets do not work when viewing notebooks this way, but many
 animations do show up properly.
 
+To run the notebooks on the cloud service [binder](http://mybinder.org),
+you can [launch binder](http://mybinder.org/repo/rjleveque/amath585w2020),
+or clone this repository to run them locally.
+
 For more information, see the 
 [Code and notebooks](http://staff.washington.edu/rjl/classes/am585w2020/codes.html)
 webpage.

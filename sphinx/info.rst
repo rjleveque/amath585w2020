@@ -25,7 +25,7 @@ Instructor
 
   * Office hours: 
 
-    - Both on GoToMeeting and in room TBA: T, W 4:00-5:00pm (Pacific). 
+    - Both on GoToMeeting and in Lewis 129: T, W 4:00-5:00pm (Pacific). 
       See the `Canvas page <https://canvas.uw.edu/courses/1352870>`_
       for link and access code
 

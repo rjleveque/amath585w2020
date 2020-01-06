@@ -16,6 +16,15 @@ hours late with a reduction of 10% for tardiness.  After that homework
 will not be accepted unless you have made arrangements in advance due to 
 special circumstances.
 
+*Discussing homework:* You may discuss homework problems with other
+students, but the work you turn in should be your own.  In particular, 
+write your own computer code for problems that require computing and
+make sure you understand what you are doing.  General clarification 
+questions are appropriate to ask on the Discussion board, but please don't
+ask or answer specific questions about how to do a problem.  Do talk to the
+instructor or TA if you have questions, or if you don't understand how to do
+something.
+
 There will also be in-class midterm and final exams, see :ref:`info` for
 details.
 

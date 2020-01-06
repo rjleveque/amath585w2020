@@ -16,14 +16,18 @@ Instructor
   * Office hours: 
 
     - In Lewis 328: W, Th 12:00 - 1:00
-    - On GoToMeeting: M, W 7:00 - 8:00pm (Pacific Time)
+    - On GoToMeeting: M, W 7:00 - 8:00pm (Pacific).  
+      See the `Canvas page <https://canvas.uw.edu/courses/1352870>`_
+      for link and access code
     - Or usually available to talk after class, or make an appointment.
 
 * TA: Kenan Li
 
   * Office hours: 
 
-    - Both on GoToMeeting and in room TBA: T, W 4:00-5:00pm (Pacific Time)
+    - Both on GoToMeeting and in room TBA: T, W 4:00-5:00pm (Pacific). 
+      See the `Canvas page <https://canvas.uw.edu/courses/1352870>`_
+      for link and access code
 
 Class meeting times
 -------------------

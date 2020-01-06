@@ -8,7 +8,8 @@ import os,sys,glob,re
     
 def make_html(notebooks='all', run_notebooks=True, html_dir='build_html'):
 
-    os.system('mkdir -p %s' % html_dir)
+    os.system('mkdir -p %s' % html_dir)  # create directory if it doesn't exist
+    os.system('cp *.py %s/' % html_dir)  # copy .py modules that might be used
 
     if notebooks == 'all':
         notebook_files = glob.glob('*.ipynb')

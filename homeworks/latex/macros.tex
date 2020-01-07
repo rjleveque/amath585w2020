@@ -1,0 +1,61 @@
+
+% a few handy macros
+
+\newcommand\matlab{{\sc matlab}}
+\newcommand{\goto}{\rightarrow}
+\newcommand{\bigo}{{\mathcal O}}
+\newcommand{\half}{\frac{1}{2}}
+%\newcommand\implies{\quad\Longrightarrow\quad}
+\newcommand\reals{{{\rm l} \kern -.15em {\rm R} }}
+\newcommand\complex{{\raisebox{.043ex}{\rule{0.07em}{1.56ex}} \hskip -.35em {\rm C}}}
+
+
+% macros for matrices/vectors:
+
+% matrix environment for vectors or matrices where elements are centered
+\newenvironment{mat}{\left[\begin{array}{ccccccccccccccc}}{\end{array}\right]}
+\newcommand\bcm{\begin{mat}}
+\newcommand\ecm{\end{mat}}
+
+% matrix environment for vectors or matrices where elements are right justifvied
+\newenvironment{rmat}{\left[\begin{array}{rrrrrrrrrrrrr}}{\end{array}\right]}
+\newcommand\brm{\begin{rmat}}
+\newcommand\erm{\end{rmat}}
+
+% for left brace and a set of choices
+\newenvironment{choices}{\left\{ \begin{array}{ll}}{\end{array}\right.}
+\newcommand\when{&\text{if~}}
+\newcommand\otherwise{&\text{otherwise}}
+% sample usage:
+%  \delta_{ij} = \begin{choices} 1 \when i=j, \\ 0 \otherwise \end{choices}
+
+
+% for labeling and referencing equations:
+\newcommand{\eql}{\begin{equation}\label}
+\newcommand{\eqn}[1]{(\ref{#1})}
+% can then do
+%  \eql{eqnlabel}
+%  ...
+%  \end{equation}
+% and refer to it as equation \eqn{eqnlabel}.  
+
+
+% some useful macros for finite difference methods:
+\newcommand\unp{U^{n+1}}
+\newcommand\unm{U^{n-1}}
+
+% for chemical reactions:
+\newcommand{\react}[1]{\stackrel{K_{#1}}{\rightarrow}}
+\newcommand{\reactb}[2]{\stackrel{K_{#1}}{~\stackrel{\rightleftharpoons}
+   {\scriptstyle K_{#2}}}~}
+
+% Parts:
+
+% set enumerate to give parts a, b, c, ...  rather than numbers 1, 2, 3...
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+
+% set second level enumerate to give parts i, ii, iii, iv, etc.
+\renewcommand{\theenumii}{\roman{enumii}}
+\renewcommand{\labelenumii}{(\theenumii)}
+

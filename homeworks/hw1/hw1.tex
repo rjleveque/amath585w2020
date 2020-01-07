@@ -1,0 +1,145 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.1in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 585}
+\hbox{Homework \#1}\hbox{Due Thursday, January 16, 2019}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1352870/assignments/5199959}
+
+
+%--------------------------------------------------------------------------
+\vskip 0.5cm
+\hrule
+
+If you haven't done so already, clone the class repository and read about how 
+to use it on the class webpage
+\url{http://staff.washington.edu/rjl/classes/am585w2020/class_repos.html}.
+
+Also, this would be a good time to try to figure out how to install Python
+and use Jupyter notebooks from the {\tt notebooks} directory
+of the repository.  See 
+\url{http://staff.washington.edu/rjl/classes/am585w2020/code.html}.
+Contact the instructor or TA if you need help.
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1.}
+Suppose we wish to approximate the fourth derivative $u^{(4)}(x_0)$ 
+using a 5-point stencil
+\[
+u^{(4)}(x_0) \approx c_{-2} u(x_{-2}) + c_{-1} u(x_{-1}) + c_0 u(x_0) + c_1 u(x_1)
+                   + c_2 u(x_2)
+\]
+in the case of equally spaced points, $x_j = x_0 + jh$ for some
+$h = \Delta x$.
+
+By hand, work out the Vandermonde system of equations to be solved for the
+coefficients and confirm that the coefficients produced by the 
+{\tt fdcoeffV} function gives coefficients that satisfy this linear system.
+(Use either the Python or Matlab version, but I suggest you try using Python
+and the Jupyter notebook.)
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2.}
+(a) Determine the order of accuracy and leading term of the asymptotic error for
+the approximation derived above.  In other words, if
+the function $u(x)$ is sufficiently smooth, show the approximation has an error
+that is of the form $C h^p + {\cal O}(h^{p+1})$ and determine $p$ and $C$.
+The value of $C$ will depend on higher-order derivative(s) of $u$ at $x_0$.
+
+(b) Test your result by computing the error for $u(x) = \sin(2x)$
+at the point $x_0 = 1$ and various choices of $h$ and show this is
+consistent with what you derived.  Produce a log-log plot of the absolute
+error vs.\ $h$ and the expected error to show that it has the expected form 
+(similar to the plots produced in the {\tt fdstencil\_errors.ipynb} notebook).
+How good an approximation can you get before rounding error takes over?
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3.}
+Suppose we want to solve a 2-point boundary value problem of the form
+\[
+u^{(4)}(x) = 3u''(x) + 4u(x) + f(x)
+\]
+for $a \leq x \leq b$ with prescribed boundary conditions 
+\[
+u(a) = \alpha_0, \quad u'(a) = \alpha_1, \qquad
+u(b) = \beta_0, \quad u'(b) = \beta_1.
+\]
+Set up the linear system of equations that would be solved to find a
+finite-difference solution to this problem.  For this homework you do not
+need to program this or solve the system, just write out the system in
+a way that is clear what the banded matrix is, and what system needs to be
+solved. In particular, write
+out explicitly at least the first three and last three rows of the matrix
+and elements of the right-hand side to show how the function values $f(x_j)$
+and boundary conditions come into these.
+
+Use a uniform grid $x_j = a + jh$ with $h = (b-a)/(m+1)$, 
+%including the boundary points
+%$U_0 \approx u(a)$ and $U_{m+1} \approx u(b)$.
+Use the approximation to $u^{(4)}$ from Problem 1 and the standard centered
+approximation for $u''(x)$.  For the boundary conditions on $u'$, use 
+one-sided approximations that are second-order accurate.
+
+Since $u(a)$ and $u(b)$ are both known from the boundary conditions, you can
+set this up as a system of $m$ equations for the interior unknowns $U_1,~
+\ldots,~ U_m$.  
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+
+\end{document}

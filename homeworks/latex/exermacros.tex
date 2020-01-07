@@ -1,0 +1,48 @@
+
+% Macros for exercises:
+
+\newcommand{\exernum}{0.0} % will be set to current Exercise number
+
+% Headers:
+
+\newcommand{\exercise}[2][\null]{\vskip 15pt \noindent%
+     {\large \bf Exercise #2}~ {\it #1}%
+     \nopagebreak\vskip 5pt \nopagebreak%
+     \renewcommand{\exernum}{#2} \setcounter{equation}{0}%
+     \addcontentsline{toc}{subsection}{Exercise #2 \hskip 5pt #1}}
+     % \exercise has optional first argument -- short descriptor
+     % the exercise number is stored in \exernum for use in labeling equations
+
+\newcommand{\chapexercises}[1]{%
+     \cleardoublepage
+     \centerline{\LARGE\bf Chapter #1 Exercises}
+     \vskip .5cm
+     \noindent
+     From: {\it Finite Difference Methods for Ordinary and Partial 
+     Differential Equations}\\  by R.~J.~LeVeque, SIAM, 2007.~~~
+     {\tt http://www.amath.washington.edu/$\sim$rjl/fdmbook}
+     \vskip .5cm
+     \addcontentsline{toc}{section}{Chapter #1}
+     }
+
+% Parts:
+
+% set enumerate to give parts a, b, c, ...  rather than numbers 1, 2, 3...
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+
+% set second level enumerate to give parts i, ii, iii, iv, etc.
+\renewcommand{\theenumii}{\roman{enumii}}
+\renewcommand{\labelenumii}{(\theenumii)}
+
+% Equations:
+
+% label equations starting with E for exercise, then exernum, then a,b,c etc
+\renewcommand{\theequation}{Ex\exernum\alph{equation}}
+
+
+% commands for labeling and citing equations to add exernum automatically.
+%   then set equations using e.g. \eqlex{a} ... \end{equation}
+%   and cite as \eqnex{a}
+\newcommand{\eqlex}[1]{\begin{equation}\label{\exernum #1}}
+\newcommand{\eqnex}[1]{(\ref{\exernum #1})}

@@ -24,13 +24,33 @@ Finite difference methods
    A First Course in the Numerical Analysis of Differential Equations, 
    Cambridge University Press, 2008.
 
+.. _biblio_sparse:
+
+Sparse linear algebra
+---------------------
+
+.. [Davis] T. A. Davis,
+   Direct Methods for Sparse Linear Systems,
+   SIAM, 2006. 
+   `ebook <https://epubs.siam.org/doi/book/10.1137/1.9780898718881>`_
+
+
 .. _biblio_python:
 
 Python
 ------
 
-See :ref:`python`
+See also: :ref:`python`
 
+.. [LangtangenPrimer] H. P. Langtangen, 
+   A Primer on Scientific Programming with Python,
+   Springer 2016.
+   `pdf version <https://hplgit.github.io/primer.html/doc/pub/half/book.pdf>`_
+
+.. [VanderPlas] J. VanderPlas, 
+   Python Data Science Handbook,
+   O'Reilly Media, 2016. 
+   `online with code you can run <https://jakevdp.github.io/PythonDataScienceHandbook/>`_
 
 .. _biblio_latex:
 

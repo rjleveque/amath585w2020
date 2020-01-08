@@ -44,6 +44,8 @@ Numpy, Scipy, and matplotlib are the core packages for scientific Python.
 - `Matplotlib Gallery <http://matplotlib.org/gallery.html>`_ 
   (illustrating how to make various types of plots)
 
+- See also the :ref:`biblio_python` section of the bibliography.
+
 Many other packages are also useful, e.g.
 
 - `SymPy <https://www.sympy.org/en/index.html>`_ (Symbolic mathematics)

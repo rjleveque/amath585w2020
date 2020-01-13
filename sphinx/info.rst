@@ -104,6 +104,10 @@ Textbook
 - `The book webpage <http://faculty.washington.edu/rjl/fdmbook/>`_ 
   contains links to a tar file of matlab scripts and latex files.
 
+- The book webpage also lists some
+  `errata <http://faculty.washington.edu/rjl/fdmbook/errata.html>`_.
+  Please look this over since there are some typos in the book.
+
 Note: You can get a 30% discount if you buy the book direct from
 SIAM and you are a member.  `Student membership
 <http://www.siam.org/students/memberships.php>`_  is free for 

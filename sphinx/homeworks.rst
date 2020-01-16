@@ -32,13 +32,13 @@ details.
 Schedule (tentative)
 ---------------------
 
-* :ref:`Homework1` due Thursday, January 16
-* :ref:`Homework2` due Thursday, January 23
-* :ref:`Homework3` due Thursday, February 6
+* :ref:`homework1` due Thursday, January 16
+* :ref:`homework2` due Thursday, January 23
+* :ref:`homework3` due Thursday, February 6
 * Midterm: Wednesday, February 12
-* :ref:`Homework4` due Thursday, February 20
-* :ref:`Homework5` due Thursday, March 5
-* :ref:`Homework6` due Thursday, March 12
+* :ref:`homework4` due Thursday, February 20
+* :ref:`homework5` due Thursday, March 5
+* :ref:`homework6` due Thursday, March 12
 * Final: Tuesday March 17, 2:30 - 4:20pm
 
 

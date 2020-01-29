@@ -1,0 +1,208 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 585}
+\hbox{Homework \#3}\hbox{Due Thursday, February 6, 2020}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1352870/assignments/5237966}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1.}
+Consider the nonlinear boundary value problem 
+\[
+\sin(u''(x)) = u(x)\exp(u'(x)) + f(x)
+\]
+for $0\leq x \leq 1$, 
+with Dirichlet boundary conditions $u(0) = \alpha, ~u(1) = \beta$.
+
+(a) Discretize using the standard second-order centered approximations for
+$u'(x_i)$ and $u''(x_i)$, giving a nonlinear system of equation $G(U)=0$
+where $G:\reals^m \rightarrow \reals^m$ and $U$ is the vector of interior
+unknowns.  What is the $i$'th component  $G_i(U)$?
+
+(b) What is the $(i,j)$ element of the Jacobian matix $G'(U)$
+needed to implement Newton's method for this system? 
+
+(c) Is the Jacobian matrix symmetric in general? 
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2.}
+
+Consider the linearized pendulum problem of Section 2.16, 
+which we will rewrite with $x$ in place of $t$ and now calling the angle
+$u(x)$ for consistency with our other BVPs:
+\[
+u''(x) = -\gamma^2 u(x)
+\]
+on the interval $0 \leq x \leq 1$, with $\gamma^2 = g/L$.  
+
+(a) Confirm that the general solution to this ODE is 
+$u(x) = c_1 \sin(\gamma x) + c_2 \cos(\gamma x)$.
+
+(b) If we impose Dirichlet boundary conditions $u(0)=\alpha$ and $u(1) =
+\beta$, show that this leads to a $2\times 2$ linear system of equations to
+determine the coefficients $c_1$ and $c_2$. Solve this system for the case
+$\gamma = \pi/2$ to find $c_1$ and $c_2$ in terms of $\alpha$ and
+$\beta$. 
+
+(c) Show that if $\gamma = \pi$ then the system for $c_1, c_2$ is
+singular.  For what choices of $\alpha,\beta$ does the system have a
+solution? In such cases it has infinitely many solutions, what are they?
+
+(d) Recall that $-\pi^2$ is an eigenvalue of the operator
+$\partial_x^2$ on the interval $[0,1]$ with homogeneous boundary conditions
+$u(0)=u(1)=0$.  The linear pendulum equation can be written as ${\cal L}u = 0$,
+where $L = \partial_x^2 + \gamma^2$.
+What are the eigenvalues and eigenfunctions of this operator and how do
+these relate to your answer to part (c)?
+
+(e) Suppose we discretize this BVP with the usual second-order centered 
+approximation, giving a tridiagonal matrix $A$ for the system for interior
+unknowns $[U_1,~\ldots,~U_m]$.  What are the eigenvalues and eigenvectors of
+this matrix?  Hint: if $T$ is the tridiagonal matrix of (2.10) then 
+$A = T + \gamma^2 I$.
+
+(f) Note that if $\gamma = \pi$ then this matrix is not singular (all the
+eigenvalues are nonzero) for $h>0$, 
+so the discrete system has a unique solution for any $h>0$.
+However, we expect trouble as $h \goto 0$, since we are approximating a BVP
+that does not have a unique solution for this choice of $\gamma$.  Show that
+in the 2-norm the method is {\em not stable} in the sense of Definition 2.1 
+in this case.  How rapidly does $\|A^{-1}\|_2$ grows as $h\goto 0$.
+(E.g. like $1/h$?  or $1/h^2$?)
+
+(g) On the other hand, for any $\gamma$ that is not an
+integer multiple of $\pi$, show that this method is stable in the 2-norm.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3.}
+
+If $A \in \reals^{m \times m}$ and $u\in\reals^m$ is any nonzero vector, then 
+the scalar value $Q(u) = u^TAu / u^Tu$ is called the Rayleigh quotient.
+
+(a) Show that if $v$ is an eigenvector of $A$ then $Q(v) = \lambda$, the
+corresponding eigenvalue.
+
+(b) If $A = A^T$ is a symmetric matrix then the eigenvalues must be real. 
+The  matrix is called {\em
+symmetric positive definite} if the eigenvalues of $A$ are all positive,
+or {\em symmetric negative definite} if they are all negative. 
+
+
+Show that if $A$ is symmetric positive or negative definite then
+\begin{equation}\label{Qbound}
+\min_p  \lambda_p \leq Q(u) \leq \max_p \lambda_p.
+\end{equation}
+Hint: Recall that if $A$ is symmetric then it is diagonalizable and the
+eigenvectors are mutually orthogonal, so we can write $A = V\Lambda V^T$
+where $V$ is the matrix of normalized eigenvectors (each column $v_j$ has
+2-norm equal to 1). So $V$ is an ``orthogonal matrix'' with  
+$V^{-1} = V^T$. Hence any vector $u\in\reals^m$ can be written as $u=Vy$ for
+$y = V^Tu$.  (See also Appendix C.)
+
+Conversely, show that if $A$ is symmetric and if
+there are constants $C_1,C_2$ such that
+$C_1 \leq Q(u) \leq C_2$ for all nonzero vectors $u$, then the eigenvalues 
+of $A$ all satisfty $C_1 \leq \lambda \leq C_2$.
+
+Investigating $Q(u)$ can sometimes help us to show that the eigenvalues of
+$A$ are bounded away from 0, which can be useful in proving stability
+of a method.
+
+The next problem illustrates one such case.
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 4.}
+
+
+
+Suppose we discretize the {\em nonlinear} pendulum problem $u''(x) =
+-\gamma^2 \sin(u(x))$ (again with Dirichlet boundary conditions) using
+the standard second order centered approximation to $u''(x_i)$, as 
+discussed in Section 2.16. 
+
+The Jacobian matrix $G'(U)$ now has the form $G'(U)=T+D$,
+where $T$ is the standard tridiagonal matrix of (2.10) and $D$ is now a
+diagonal matrix that is no longer a scalar multiple of the identity matrix.
+It is similar to (2.82) but with an additional factor $\gamma^2$.
+
+We can no longer compute the eigenvalues or eigenvectors of $A=T+D$ exactly.
+
+Consider a problem for which $\gamma < \pi$ and suppose we also
+know there is a unique exact solution $u(x)$ to the boundary value
+problem being considered (there is in this case, but you don't need
+to prove it).
+
+Then, using the results of Problem 3, show that as $h \goto 0$ we
+can find a uniform bound on $\|(G'(U))^{-1}\|_2$ and hence this
+method for the nonlinear pendulum is stable in the sense of Definition 2.2.
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+%--------------------------------------------------------------------------
+
+\end{document}

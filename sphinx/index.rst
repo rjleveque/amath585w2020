@@ -23,6 +23,7 @@ Contents
    outline
 
    homeworks
+   handouts
 
 .. toctree::
    :maxdepth: 2

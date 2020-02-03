@@ -12763,7 +12763,7 @@ BbHLgBme6SFzA1NU9Rv/hpRmTwARngLlNuB+P8cTPM0PjTHGJC2YqlaMMcYkwRK5McYEOUvkxhgT
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this case the Fourier interpolant is a $C^\infty$ periodic function, so we observe the <em>Gibbs phenomena</em> near the point of discontinuity of $u(x)$ (the boundary).</p>
 <p><strong>Note:</strong> Differentiating this interpolant would not give good approximations to the derivative, at least near the boundary, no matter how many points we used.</p>
-<p>If we compue more Fourier coefficients, we see they only decay like $1/k$ for a discontinuous function:</p>
+<p>If we compute more Fourier coefficients, we see they only decay like $1/k$ for a discontinuous function:</p>
 
 </div>
 </div>
@@ -14082,7 +14082,9 @@ AABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Solving-a-BVP">Solving a BVP<a class="anchor-link" href="#Solving-a-BVP">&#182;</a></h2>
+<h2 id="Solving-a-BVP">Solving a BVP<a class="anchor-link" href="#Solving-a-BVP">&#182;</a></h2><p>Now let's try solving the boundary value problem $u''(x) = f(x)$ with periodic boundary conditions, $u(0)=u(2\pi)$.
+As the $f(x)$ we will use the second derivative of the function $u(x) = \exp(\cos(x))$ we used above.  This has the required property that $\int_0^{2\pi} f(x) dx = 0$ for there to be a solution.  The solution is not unique, and indeed we will see that the solution computed by the Fourier spectral method below is shifted by a constant value from the $u(x)$ we started with (because it is computed with the additional constraint that its mean should be zero).</p>
+
 </div>
 </div>
 </div>

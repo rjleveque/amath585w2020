@@ -42,6 +42,10 @@ Spectral methods
    <http://amath.colorado.edu/faculty/fornberg/book.html>`_,
    Cambridge University Press.
 
+.. [BriggsEtAl_DFT] W. L. Briggs, V. Emden Henson,
+   The DFT, An Owner's Manual for the Discrete Fourier Transform,
+   SIAM, 1995.
+  
 .. [LeVequeFourierNotes] R. J. LeVeque,
    `Fourier Transforms <_static/fourier.pdf>`__.
 
@@ -70,6 +74,18 @@ Sparse linear algebra
    SIAM, 2006. 
    `ebook <https://epubs.siam.org/doi/book/10.1137/1.9780898718881>`_
 
+.. [BriggsEtAl_MG] W. L. Briggs, V. Emden Henson, and S. F. McCormick,
+   A Multigrid Tutorial, Second Edition, SIAM, 2000.
+   `ebook <https://epubs.siam.org/doi/book/10.1137/1.9780898719505?mobileUi=0>`_
+
+.. [Greenbaum] A. Greenbaum,
+   Iterative Methods for Solving Linear Systems,
+   SIAM, 1997. 
+   `ebook <https://epubs.siam.org/doi/book/10.1137/1.9781611970937?mobileUi=0u>`_
+
+.. [Saad] Y. Saad, 
+   Iterative Methods for Sparse Linear Systems,
+   Second Edition, SIAM, 2003.
 
 .. _biblio_python:
 

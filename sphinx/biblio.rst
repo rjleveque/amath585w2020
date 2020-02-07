@@ -24,6 +24,42 @@ Finite difference methods
    A First Course in the Numerical Analysis of Differential Equations, 
    Cambridge University Press, 2008.
 
+.. [Keller] H. B. Keller,
+   Numerical Solution of Two Point Boundary Value Problems,
+   CBMS 24, SIAM, 1976.
+
+.. _biblio_spectral:
+
+Spectral methods
+---------------------
+
+.. [Boyd] J.P. Boyd, `Chebyshev and Fourier Spectral Methods
+   <http://www-personal.umich.edu/~jpboyd/BOOK_Spectral2000.html>`_
+   Second edition, freely available from the `author's website
+   <http://www-personal.umich.edu/~jpboyd/>`_
+
+.. [Fornberg] B. Fornberg, `A Practical Guide to Pseudospectral Methods
+   <http://amath.colorado.edu/faculty/fornberg/book.html>`_,
+   Cambridge University Press.
+
+.. [LeVequeFourierNotes] R. J. LeVeque,
+   `Fourier Transforms <_static/fourier.pdf>`__.
+
+.. [Trefethen1]  L. N. Trefethen,
+   `Approximation Theory and Approximation Practice
+   <https://my.siam.org/Store/Product/viewproduct/?ProductId=31254869>`_, SIAM 2013.
+   `[Download m-files] <https://people.maths.ox.ac.uk/trefethen/ATAP/>`_
+
+
+.. [Trefethen2]  L. N. Trefethen,
+   `Spectral Methods in Matlab <https://my.siam.org/Store/Product/viewproduct/?ProductId=1186>`_,
+   SIAM 2000.
+   `[Download m-files] <http://people.maths.ox.ac.uk/trefethen/spectral.html>`_
+
+.. [Chebfun] `Chebfun software <https://www.chebfun.org/>`_  (Matlab package).
+   See also the Python version 
+   `PyChebfun <https://github.com/olivierverdier/pychebfun>`_ 
+
 .. _biblio_sparse:
 
 Sparse linear algebra

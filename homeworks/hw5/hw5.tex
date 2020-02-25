@@ -1,0 +1,226 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{8.9in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 585}
+\hbox{Homework \#5}\hbox{Due Thursday, March 5, 2020}}
+
+\vskip 5pt
+
+Homework is due to Canvas by 11:00pm PDT on the due date.
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1352870/assignments/5268734}
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1.}
+
+Suppose $A \in \reals^{m\times m}$ is strictly row diagonally dominant,
+i.e.,
+\begin{equation}\label{diagdom}
+\sum_{j\neq i} |a_{ij}| < |a_{ii}|, \quad\text{for}~i=1,~2,~\ldots,~m.
+\end{equation} 
+where the sum goes from $j=1$ to $m$ omitting the diagonal term.
+
+Let $G$ be the Jacobi iteration matrix for this matrix $A$.
+
+(a) Show that $\|G\|_\infty < 1$ and hence the Jacobi iteration converges,
+since $\|e_k\|_\infty \leq \|G\|_\infty^k \|e_0\|_\infty$.  (Here and below
+subscript $k$ refers to the $k$th iteration).
+
+(b) Use the Gershgorin Theorem of Appendix C.8 to show that we also have
+$\rho(G) < 1$ in the case when \eqn{diagdom} holds.
+
+(c) Suppose $A$ is a normal matrix ($A^TA = AA^T$) and suppose something
+stronger than \eqn{diagdom} holds, namely,
+\begin{equation}\label{diagdom2}
+\sum_{j\neq i} |a_{ij}| \leq \beta |a_{ii}|, \quad\text{for}~i=1,~2,~\ldots,~m
+\end{equation} 
+for $\beta = 1/2$.
+Show that in this case Jacobi would reduce the 2-norm of the error
+$\|e_k\|_2$ by a factor of at least $10^6$ in only 20 iterations, i.e., 
+$\|e_k\|_2 \leq 10^{-6}\|e_0\|_2.$
+
+
+(d) More generally, suppose the factor $\beta$ in \eqn{diagdom2}
+is some value satisfying $\beta < 1$, and suppose the matrix is not
+necessarily normal but we have an upper bound $\tilde \kappa$ on
+the 2-norm condition number of $R$, the matrix of right eigenvectors
+of $G$.  In terms of $\beta$ and $\tilde \kappa$, what is the maximum
+number of iterations that would be required to reduce the 2-norm
+error by a factor of $10^6$?  (In exact arithmetic.)
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2.}
+
+Based on Problem 1, you might think that the more diagonally dominant a
+matrix is, the better in terms of convergence rate.
+However, consider these two matrices:
+\[
+A_1 = \bcm 1&-1/2\\ -1/2&1\ecm, \qquad
+A_2 = \bcm 1&-3/4\\ -1/12&1\ecm.
+\]
+Determine the values $\beta$ for each case (as in \eqn{diagdom2},
+and also the asymptotic convergence rates $\rho(G_1)$ and $\rho(G_2)$
+in each case, where $G_i$ is the Jacobi iteration matrix for $A_i$.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3.}  Suppose $A$ is a {\em singular} matrix and we do a splitting of
+the form $A = M-N$ in such a way that $M$ is nonsingular (e.g. Jacobi
+iteration in a case where the diagonal elements of $A$ are all nonzero).
+
+Show that in spite of $M$ being nonsingular, the iteration matrix $G=M^{-1}N$
+can never satisfy $\rho(G) < 1$.
+
+Thus we cannot expect an iterative method for such a system to converge in
+general, which makes sense if the matrix is singular.  However, see the next
+problem...
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 4.}
+Suppose we want to solve the boundary value problem $u''(x) = f(x)$ on
+$0\leq x \leq 1$ with {\em periodic boundary conditions}: $u(0) = u(1)$.
+Recall that this has no solution unless a certain condition is satisfied by
+$f(x)$, in which case it has infinitely many solutions.
+
+Recall also that if we discretize this with the standard centered second-order
+approximation, using a uniform grid with $h = 1/(m+1)$,
+we get a tridiagonal matrix with additional corner terms from
+the periodic boundary conditions. The matrix is singular and so the discrete
+problem has an analogous solvability condition.
+
+(a) Suppose we use Jacobi iteration to solve this problem, in a case where
+the discrete solvability condition is satisfied.  What is the
+iteration matrix $G$ for this problem? 
+
+(b) Determine the eigenvalues and eigenvectors of $G$.
+Appendix C.7 of the text might be useful.
+
+(c) You should find that one eigenvalue of $G$ is equal to 1, and hence the
+Jacobi iteration does not appear to converge according to the theory of
+Section 4.2 (and consistent with Problem 3).  
+But if the solvability condition is satisfied then in practice 
+the method does converge to one of the infinitely many solutions of the
+linear system.  Explain in what sense this is true and how the particular
+solution obtained is related to the initial guess $u^{[0]}$ used for the
+Jacobi iteration.
+{\bf Hint:} Express the initial error relative to some particular solution
+as a linear combination of the eigenvectors and then observe the effect of
+iterating with the iteration matrix $G$.
+
+(d) In the case it does converge, as described in (c), what is the
+expected convergence rate?  (Note that since $\rho(G)=1$, this is not it.)
+
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 5.}
+
+Consider the problem
+\[
+\frac{d}{dx}\left(\kappa(x) u'(x)\right) = f(x)
+\]
+on $0\leq x \leq 1$ with $\kappa(x) >0$ everywhere. 
+
+(a) Determine the solution of this problem for the case of $f(x)=0$ and
+a discontinuous $\kappa(x)$ given by
+
+\[
+\kappa(x) = \begin{choices}
+0.1 & \text{if~}  x < 0.5,\\
+1& \text{if~}  x > 0.5.
+\end{choices}
+\]
+with boundary conditions $u(0) = 0$ and $u(1) = 1$. The solution should be
+continuous and piecewise linear with a discontinuity in slope at $x=0.5$
+(Note this could model steady steady heat flow through a material that
+conducts heat better on the right half than on the left.)
+
+
+(b) Now suppose we discretize using the symmetric matrix $A$ of
+(2.73) in the text.  Choose $m=19$ (odd, so there is a grid point exactly
+at $x=0.5$, in which case the solution to the discrete system should
+agree with the exact solution of the differential equation).
+
+Write a computer code to solve this system using the SOR method for an
+arbitrary value of $\omega$.  Note that setting $\omega = 1$ should just
+reduce to the Gauss-Seidel method for comparison.  
+
+Test this code and estimate the rate of convergence with $\omega = 1$ and
+with $\omega = 0.7$, by doing a least squares fit of the convergence
+history as demonstrated in the notebook {\tt IterativeMethods.ipynb}.
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+
+\end{document}

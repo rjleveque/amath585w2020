@@ -13272,7 +13272,7 @@ f(x_1) - \alpha/h^2 \\ f(x_2) \\ \vdots \\ f(x_{m-1}) \\ f(x_m) - \beta/h^2
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-Conjugate-Gradient-algorithm">The Conjugate-Gradient algorithm<a class="anchor-link" href="#The-Conjugate-Gradient-algorithm">&#182;</a></h2><p>The next function implements the C-G algorithm.</p>
+<h3 id="Different-version:-extend-v-to-include-boundary-points">Different version: extend v to include boundary points<a class="anchor-link" href="#Different-version:-extend-v-to-include-boundary-points">&#182;</a></h3><p>Here's a simpler way to define the <code>matvec</code> function that is more like what is done in the notebook <a href="ConjugateGradient2D.html">ConjugateGradient2D.html</a>.</p>
 
 </div>
 </div>
@@ -13280,6 +13280,47 @@ f(x_1) - \alpha/h^2 \\ f(x_2) \\ \vdots \\ f(x_{m-1}) \\ f(x_m) - \beta/h^2
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matvec</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given v of length m </span>
+<span class="sd">    Return b = A*v</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># pad v with zeros at each boundary, needed for computing centered differences:</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">v_full</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">v_full</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    
+    <span class="c1"># compute b of length m at interior points only. </span>
+    <span class="c1"># Note that slicing with [1:-1] corresponds to interior points,</span>
+    <span class="c1"># [:-2] correspond to points to the left and </span>
+    <span class="c1"># [2:] are points to the right.</span>
+    
+    <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">v_full</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">v_full</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">v_full</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span> <span class="o">/</span> <span class="n">h</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="k">return</span> <span class="n">b</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Conjugate-Gradient-algorithm">The Conjugate-Gradient algorithm<a class="anchor-link" href="#The-Conjugate-Gradient-algorithm">&#182;</a></h2><p>The next function implements the C-G algorithm.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">solve_bvp_CG</span><span class="p">(</span><span class="n">f_fcn</span><span class="p">,</span> <span class="n">utrue_fcn</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">kplot</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -13379,7 +13420,7 @@ f(x_1) - \alpha/h^2 \\ f(x_2) \\ \vdots \\ f(x_{m-1}) \\ f(x_m) - \beta/h^2
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">f_fcn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">6</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
@@ -13393,7 +13434,7 @@ f(x_1) - \alpha/h^2 \\ f(x_2) \\ \vdots \\ f(x_{m-1}) \\ f(x_m) - \beta/h^2
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">errors</span><span class="p">,</span><span class="n">figs</span> <span class="o">=</span> <span class="n">solve_bvp_CG</span><span class="p">(</span><span class="n">f_fcn</span><span class="p">,</span> <span class="n">utrue_fcn</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">kplot</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -13451,7 +13492,7 @@ Stopping after 19 iterations
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">semilogy</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">errors</span><span class="p">,</span> <span class="s1">&#39;b-x&#39;</span><span class="p">)</span>
@@ -13495,7 +13536,7 @@ Stopping after 19 iterations
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">animate_figs</span><span class="p">(</span><span class="n">figs</span><span class="p">)</span>
@@ -13511,7 +13552,7 @@ Stopping after 19 iterations
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13702,39 +13743,39 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_img134d38561aaa4e8bab9d8d724f44ab5f">
+  <img id="_anim_imgc1470f0529764d0e8b04b6b9e0b6b993">
   <div class="anim-controls">
-    <input id="_anim_slider134d38561aaa4e8bab9d8d724f44ab5f" type="range" class="anim-slider"
+    <input id="_anim_sliderc1470f0529764d0e8b04b6b9e0b6b993" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="anim134d38561aaa4e8bab9d8d724f44ab5f.set_frame(parseInt(this.value));"></input>
+           oninput="animc1470f0529764d0e8b04b6b9e0b6b993.set_frame(parseInt(this.value));"></input>
     <div class="anim-buttons">
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.slower()"><i class="fa fa-minus"></i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.first_frame()"><i class="fa fa-fast-backward">
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.slower()"><i class="fa fa-minus"></i></button>
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.first_frame()"><i class="fa fa-fast-backward">
           </i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.previous_frame()">
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.reverse_animation()">
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.pause_animation()"><i class="fa fa-pause">
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.pause_animation()"><i class="fa fa-pause">
           </i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.play_animation()"><i class="fa fa-play"></i>
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.play_animation()"><i class="fa fa-play"></i>
           </button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.next_frame()"><i class="fa fa-step-forward">
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.next_frame()"><i class="fa fa-step-forward">
           </i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.last_frame()"><i class="fa fa-fast-forward">
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.last_frame()"><i class="fa fa-fast-forward">
           </i></button>
-      <button onclick="anim134d38561aaa4e8bab9d8d724f44ab5f.faster()"><i class="fa fa-plus"></i></button>
+      <button onclick="animc1470f0529764d0e8b04b6b9e0b6b993.faster()"><i class="fa fa-plus"></i></button>
     </div>
-    <form action="#n" name="_anim_loop_select134d38561aaa4e8bab9d8d724f44ab5f" class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_134d38561aaa4e8bab9d8d724f44ab5f"
+    <form action="#n" name="_anim_loop_selectc1470f0529764d0e8b04b6b9e0b6b993" class="anim-state">
+      <input type="radio" name="state" value="once" id="_anim_radio1_c1470f0529764d0e8b04b6b9e0b6b993"
              >
-      <label for="_anim_radio1_134d38561aaa4e8bab9d8d724f44ab5f">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_134d38561aaa4e8bab9d8d724f44ab5f"
+      <label for="_anim_radio1_c1470f0529764d0e8b04b6b9e0b6b993">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_c1470f0529764d0e8b04b6b9e0b6b993"
              checked>
-      <label for="_anim_radio2_134d38561aaa4e8bab9d8d724f44ab5f">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_134d38561aaa4e8bab9d8d724f44ab5f"
+      <label for="_anim_radio2_c1470f0529764d0e8b04b6b9e0b6b993">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_c1470f0529764d0e8b04b6b9e0b6b993"
              >
-      <label for="_anim_radio3_134d38561aaa4e8bab9d8d724f44ab5f">Reflect</label>
+      <label for="_anim_radio3_c1470f0529764d0e8b04b6b9e0b6b993">Reflect</label>
     </form>
   </div>
 </div>
@@ -13744,9 +13785,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img134d38561aaa4e8bab9d8d724f44ab5f";
-    var slider_id = "_anim_slider134d38561aaa4e8bab9d8d724f44ab5f";
-    var loop_select_id = "_anim_loop_select134d38561aaa4e8bab9d8d724f44ab5f";
+    var img_id = "_anim_imgc1470f0529764d0e8b04b6b9e0b6b993";
+    var slider_id = "_anim_sliderc1470f0529764d0e8b04b6b9e0b6b993";
+    var loop_select_id = "_anim_loop_selectc1470f0529764d0e8b04b6b9e0b6b993";
     var frames = new Array(19);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACWAAAASwCAYAAAB/pHGBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz\
@@ -40845,7 +40886,7 @@ AIkEsAAAAAAAAAAAABIJYAEAAAAAAAAAACT6P3WlY2Gsk7KDAAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim134d38561aaa4e8bab9d8d724f44ab5f = new Animation(frames, img_id, slider_id, 200.0,
+        animc1470f0529764d0e8b04b6b9e0b6b993 = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -40869,7 +40910,7 @@ AIkEsAAAAAAAAAAAABIJYAEAAAAAAAAAACT6P3WlY2Gsk7KDAAAAAElFTkSuQmCC\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">f_fcn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -40883,7 +40924,7 @@ AIkEsAAAAAAAAAAAABIJYAEAAAAAAAAAACT6P3WlY2Gsk7KDAAAAAElFTkSuQmCC\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">errors</span><span class="p">,</span><span class="n">figs</span> <span class="o">=</span> <span class="n">solve_bvp_CG</span><span class="p">(</span><span class="n">f_fcn</span><span class="p">,</span> <span class="n">utrue_fcn</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">kplot</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -40924,7 +40965,7 @@ Stopping after 10 iterations
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">semilogy</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">errors</span><span class="p">,</span> <span class="s1">&#39;b-x&#39;</span><span class="p">)</span>
@@ -40968,7 +41009,7 @@ Stopping after 10 iterations
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">animate_figs</span><span class="p">(</span><span class="n">figs</span><span class="p">)</span>
@@ -40984,7 +41025,7 @@ Stopping after 10 iterations
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -41175,39 +41216,39 @@ input[type=range].anim-slider {
 </style>
 
 <div class="animation">
-  <img id="_anim_imgf3673783a0044016b3a28d8c4b7214a7">
+  <img id="_anim_imgc3375560cc0b4caaa5c2377983386d86">
   <div class="anim-controls">
-    <input id="_anim_sliderf3673783a0044016b3a28d8c4b7214a7" type="range" class="anim-slider"
+    <input id="_anim_sliderc3375560cc0b4caaa5c2377983386d86" type="range" class="anim-slider"
            name="points" min="0" max="1" step="1" value="0"
-           oninput="animf3673783a0044016b3a28d8c4b7214a7.set_frame(parseInt(this.value));"></input>
+           oninput="animc3375560cc0b4caaa5c2377983386d86.set_frame(parseInt(this.value));"></input>
     <div class="anim-buttons">
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.slower()"><i class="fa fa-minus"></i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.first_frame()"><i class="fa fa-fast-backward">
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.slower()"><i class="fa fa-minus"></i></button>
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.first_frame()"><i class="fa fa-fast-backward">
           </i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.previous_frame()">
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.previous_frame()">
           <i class="fa fa-step-backward"></i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.reverse_animation()">
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.reverse_animation()">
           <i class="fa fa-play fa-flip-horizontal"></i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.pause_animation()"><i class="fa fa-pause">
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.pause_animation()"><i class="fa fa-pause">
           </i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.play_animation()"><i class="fa fa-play"></i>
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.play_animation()"><i class="fa fa-play"></i>
           </button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.next_frame()"><i class="fa fa-step-forward">
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.next_frame()"><i class="fa fa-step-forward">
           </i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.last_frame()"><i class="fa fa-fast-forward">
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.last_frame()"><i class="fa fa-fast-forward">
           </i></button>
-      <button onclick="animf3673783a0044016b3a28d8c4b7214a7.faster()"><i class="fa fa-plus"></i></button>
+      <button onclick="animc3375560cc0b4caaa5c2377983386d86.faster()"><i class="fa fa-plus"></i></button>
     </div>
-    <form action="#n" name="_anim_loop_selectf3673783a0044016b3a28d8c4b7214a7" class="anim-state">
-      <input type="radio" name="state" value="once" id="_anim_radio1_f3673783a0044016b3a28d8c4b7214a7"
+    <form action="#n" name="_anim_loop_selectc3375560cc0b4caaa5c2377983386d86" class="anim-state">
+      <input type="radio" name="state" value="once" id="_anim_radio1_c3375560cc0b4caaa5c2377983386d86"
              >
-      <label for="_anim_radio1_f3673783a0044016b3a28d8c4b7214a7">Once</label>
-      <input type="radio" name="state" value="loop" id="_anim_radio2_f3673783a0044016b3a28d8c4b7214a7"
+      <label for="_anim_radio1_c3375560cc0b4caaa5c2377983386d86">Once</label>
+      <input type="radio" name="state" value="loop" id="_anim_radio2_c3375560cc0b4caaa5c2377983386d86"
              checked>
-      <label for="_anim_radio2_f3673783a0044016b3a28d8c4b7214a7">Loop</label>
-      <input type="radio" name="state" value="reflect" id="_anim_radio3_f3673783a0044016b3a28d8c4b7214a7"
+      <label for="_anim_radio2_c3375560cc0b4caaa5c2377983386d86">Loop</label>
+      <input type="radio" name="state" value="reflect" id="_anim_radio3_c3375560cc0b4caaa5c2377983386d86"
              >
-      <label for="_anim_radio3_f3673783a0044016b3a28d8c4b7214a7">Reflect</label>
+      <label for="_anim_radio3_c3375560cc0b4caaa5c2377983386d86">Reflect</label>
     </form>
   </div>
 </div>
@@ -41217,9 +41258,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imgf3673783a0044016b3a28d8c4b7214a7";
-    var slider_id = "_anim_sliderf3673783a0044016b3a28d8c4b7214a7";
-    var loop_select_id = "_anim_loop_selectf3673783a0044016b3a28d8c4b7214a7";
+    var img_id = "_anim_imgc3375560cc0b4caaa5c2377983386d86";
+    var slider_id = "_anim_sliderc3375560cc0b4caaa5c2377983386d86";
+    var loop_select_id = "_anim_loop_selectc3375560cc0b4caaa5c2377983386d86";
     var frames = new Array(10);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACWAAAASwCAYAAAB/pHGBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz\
@@ -54995,7 +55036,7 @@ YII=\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        animf3673783a0044016b3a28d8c4b7214a7 = new Animation(frames, img_id, slider_id, 200.0,
+        animc3375560cc0b4caaa5c2377983386d86 = new Animation(frames, img_id, slider_id, 200.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -55005,19 +55046,6 @@ YII=\
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 

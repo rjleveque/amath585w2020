@@ -239,7 +239,7 @@ smooth).
 %--------------------------------------------------------------------------
 \vskip 1cm
 \hrule
-{\bf Problem 6.}
+{\bf Problem 6.} (With corrected boundary conditions)
 
 (a) Implement the method you derived in the previous problem (in Python or Matlab).
 It is ok to base this on code you have previously written for homework problems,
@@ -248,7 +248,7 @@ and/or the class Jupyter notebooks.
 (b) Test it on the problem
 \begin{align*}
 &u''(x) = 4, \qquad 0\leq x \leq 1,\\
-&2u(0) + 3u'(0) = 1, \qquad u(1)=3,
+&2u(0) + 3u'(0) = 1, \qquad u(1)=2,
 \end{align*}
 which has exact solution $u(x) = 2x^2 + x - 1$.
 
@@ -259,7 +259,7 @@ this is true for your implementation.
 (c) Also test it on the problem
 \begin{align*}
 &u''(x) = -18x + 4, \qquad 0\leq x \leq 1,\\
-&2u(0) + 3u'(0) = -1, \qquad u(1)=3,
+&2u(0) + 3u'(0) = 1, \qquad u(1)=-1,
 \end{align*}
 which has exact solution $u(x) = -3x^3 + 2x^2 + x - 1$.
 In this case check that your method is second order accurate by producing

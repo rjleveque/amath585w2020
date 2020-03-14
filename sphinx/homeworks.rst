@@ -39,8 +39,7 @@ Schedule (tentative)
 * :ref:`homework4` due Thursday, February 20
 * :ref:`homework5` due Thursday, March 5
 * :ref:`homework6` due Thursday, March 12
-* Final: Tuesday March 17, 2:30 - 4:20pm
-
+* :ref:`final` due Thursday, March 17
 
 
 .. _hwformat:

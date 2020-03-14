@@ -72,6 +72,8 @@ Grading
 * The **midterm** will be Wednesday Februry 12, in class.
 * The **Final Exam** will be Tuesday March 17, 2020 from 2:30 - 4:20pm, 
   also in the usual classroom.
+* **NOTE:** Due to the coronavirus, the in-class final exam has been
+  replaced by a :ref:`final`.
 * Online students must arrange proctors in advance, or else take the exams
   in the classroom.
 

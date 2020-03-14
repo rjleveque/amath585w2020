@@ -1,0 +1,280 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb}
+
+\usepackage{hyperref}  % for urls and hyperlinks
+
+
+\setlength{\textwidth}{6.2in}
+\setlength{\oddsidemargin}{0.3in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.1in}
+\setlength{\voffset}{-1in}
+\setlength{\headsep}{26pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+
+
+\input{../latex/macros.tex}  % input some useful macros
+
+\begin{document}
+
+% header:
+\hfill\vbox{\hbox{AMath 585}
+\hbox{Take home final}\hbox{Due Tuesday, March 17, 2020}}
+
+\vskip 5pt
+
+Due to Canvas by 11:00pm PDT on the due date, at the latest.
+
+No late papers accepted, so aim to get it in earlier!
+
+To submit, see
+\url{https://canvas.uw.edu/courses/1352870/assignments/5301318}
+
+100 points possible.  
+
+Open book and notes, and you can use other resources too, except please don't discuss it with other students or anyone else.
+
+If you need clarification on some problem, or you think there's an error or
+typo, please post it on the 
+\href{https://canvas.uw.edu/courses/1352870/discussion_topics}{Canvas discussion board}
+so everyone has access to the same information.
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 1.}
+
+In Homework 2 you solved a linear beam equation, valid for small deformations.
+If the deformations are larger, then the equation must be nonlinear.  In some
+cases an equation of this form can be used:
+\begin{align*}
+&a u''''(x) - b(u'(x))^2 (u''(x))^2 = f(x) \quad\text{for~} 0\leq x \leq 1\\
+&u(0) = \alpha_0,~~u'(0) = \alpha_1, \quad
+u(1) = \beta_0,~~u'(1) = \beta_1.
+\end{align*}
+where $a,~b,~\alpha_0,~\alpha_1,~\beta_0,~\beta_1$ are all specified constants.
+
+(a) If we discretize with a uniform grid using $h=1/(m+1)$, suggest a 
+nonlinear system of $m$ equations that could be solved for 
+$[U_1,~U_2,~\ldots,~U_m]$ (the interior grid values) 
+to obtain an approximate solution that is second order accurate.  
+
+Make sure the boundary conditions are also handled appropriately.
+Use the "First approach" described in 
+\href{http://staff.washington.edu/rjl/classes/am585w2020/solutions/hw2\_solutions.html}{hw2\_solutions.html} 
+since this is less messy and should still be second order accurate.
+
+
+(b) If we wanted to solve this system using Newton's method, we would need
+the Jacobian matrix for the nonlinear system developed in (a).  
+You don't need to compute the full matrix,
+but do compute the diagonal elements $J_{ii}$ for $i=0,~1,~2,~\ldots,~m$.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 2.}
+
+Suppose $A$ is a $2\times 2$ singular matrix that is symmetric and has one
+postive eigenvalue, for example
+\[
+A = \bcm 1&2\\ 2&4\ecm
+\]
+is one such matrix.  Then $A$ is symmetric positive
+{\em semi-definite} ($u^TAu \geq 0$ for all nonzero $u$) 
+but is not positive definite.   If we define the functional
+\[
+\phi(u) = \frac 1 2 u^TAu - u^Tf
+\]
+as in Section 4.3 then levels sets of $\phi(u)$ are no longer ellipses.
+
+(a) What is the geometry of these level sets in general?
+
+(b) Let $z\in\reals^2$ be a null vector of $A$ and suppose $f\in\reals^2$ 
+is a vector satisfying $z^Tf = 0$.  Then the system $Au=f$ has infinitely
+many solutions.  Show that the steepest descent method applied to $\phi(u)$
+from any initial guess $u^{[0]}$ converges to {\em some} solution of the linear
+system in a single iteration.  Hint: It might be easier to explain this using 
+the result of (a) than by computing $u^{[1]}$ explicitly.  That's fine as
+long as you give a convincing argument.
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 3.}
+
+Consider the {\em first order ODE}, with a single boundary condition,
+\begin{align*}
+& u'(x) = f(x), \quad 0\leq x\leq 1,\\
+&u(0) = \alpha.
+\end{align*}
+This boundary value problem has a unique solution 
+$u(x) = \alpha + \int_0^x f(t)\, dt$. Using $u'(x_j) \approx
+(U_j - U_{j-1})/h$ on a uniform grid, we might attempt to
+approximate it by solving a system of the form
+\[
+\frac 1 h \brm 1\\-1&1\\ &-1&1\\ &&-1&1\\&&&\ddots&\ddots\\ &&&&-1&1\erm
+\bcm U_0\\U_1\\U_2\\ U_3\\\vdots \\ U_m\ecm =
+\bcm \alpha/h\\ f(x_1)\\ f(x_2)\\ f(x_3)\\ \vdots \\ f(x_m)\ecm.
+\]
+
+(a) Determine the exact solution to this linear system and show that 
+$U_j$ approximates $\alpha + \int_0^{x_j} f(t)\, dt$ with a ``Riemann sum".
+
+(b) Suppose we apply Gauss-Seidel, sweeping through the grid from left to right in the natural order (i.e. $j = 0, ~1,~\ldots,~m$).  
+Explain why one iteration is sufficient to
+converge to the exact solution of this linear system, for {\em any} choice
+of initial data $U^{[0]}$.
+
+(c) Suppose we instead sweep from right to left in
+Gauss-Seidel (for $j = m,~m-1,~\ldots 0$).
+What is the iteration matrix $G$ for this method on the system above?
+What are the eigenvalues of the $G$ matrix? 
+What are the matrices $G^2,~ G^3,~ \ldots$?  (There is a simple pattern.)
+
+(d) Suppose we start with initial guess $U^{[0]}=0$ (the zero vector).
+Does this backward Gauss-Seidel method converge in a single step? 
+In a finite number of steps? If so, how many?
+
+(e) In Section 4.2.1 we saw that the spectral radius $\rho(G)$ tells us 
+something about the rate of convergence of the method.  Comment on 
+what's going on in this example based on your answers to (c) and (d).
+
+You are welcome to write a short code to try things out, but you are not
+required to implement this.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 4.}
+
+Consider the Conjugate gradient algorithm on page 87 for some symmetric positive
+definite matrix $A \in\reals^{m\times m}$.  Suppose we happen
+to choose the initial guess $u_0$ in such a way that the initial residual
+$r_0 = f - Au_0$ is an eigenvector of $A$.  Show that in this case the
+method converges to the true solution of the linear system in one iteration.
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 5.} 
+
+Consider the BVP 
+\[
+u''(x) = f(x), \qquad\text{for}~ 0\leq x \leq 1
+\]
+with boundary conditions
+\[
+\gamma_0 u(0) + \gamma_1 u'(0) = \sigma, \qquad u(1)=\beta.
+\]
+At $x=1$ a standard Dirichlet BC is specified, but at $x=0$ we now have a
+``mixed'' or ``Robin'' boundary condition, assuming $\gamma_0,~\gamma_1,~\sigma$
+are all specified constants, as is $\beta$. For some physical problems this is
+the correct type of boundary condition, e.g. in a heat conduction problem it
+corresponds to a case in which the heat flux at $x=0$ is related to the
+temperature at this point.
+
+\newpage
+(a) Set up a tridiagonal linear system $Au=f$ that could be solved to
+model this, with the following properties:
+\begin{itemize}
+\item $u = [u_0,~u_1,~\ldots,~u_m]$ contains the unknown boundary value $u_0$ 
+but not the known value $u_{m+1} = \beta$ (assuming as usual that $x_j = jh$
+for $j=0,~1,~\ldots,~m+1$ on a grid with $h=1/(m+1)$).
+\item The method is second order accurate. 
+\end{itemize}
+Follow the strategy of the second approach on page 31 to obtain the first
+equation in your linear system (i.e. introduce a ghost point $u_{-1}$ and 
+then eliminate it from the two equations that involve this unknown).
+Write out the matrix and right hand side of your system.
+
+(b) Determine the local truncation error of your method, 
+$\tau = [\tau_0,~\tau_1,~\ldots,~\tau_m]$.  We expect $\tau_j = C_jh^2 + o(h^2)$
+so determine the constants $C_j$ in terms of derivative(s) of the exact solution
+$u(x)$ (by doing Taylor series expansions, assuming $u(x)$ is sufficiently
+smooth).
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+
+%--------------------------------------------------------------------------
+\vskip 1cm
+\hrule
+{\bf Problem 6.}
+
+(a) Implement the method you derived in the previous problem (in Python or Matlab).
+It is ok to base this on code you have previously written for homework problems,
+and/or the class Jupyter notebooks.
+
+(b) Test it on the problem
+\begin{align*}
+&u''(x) = 4, \qquad 0\leq x \leq 1,\\
+&2u(0) + 3u'(0) = 1, \qquad u(1)=3,
+\end{align*}
+which has exact solution $u(x) = 2x^2 + x - 1$.
+
+Explain why you expect the exact solution to your linear system to agree with
+exact solution of the ODE when evaluated at the grid points, and confirm that
+this is true for your implementation.
+
+(c) Also test it on the problem
+\begin{align*}
+&u''(x) = -18x + 4, \qquad 0\leq x \leq 1,\\
+&2u(0) + 3u'(0) = -1, \qquad u(1)=3,
+\end{align*}
+which has exact solution $u(x) = -3x^3 + 2x^2 + x - 1$.
+In this case check that your method is second order accurate by producing
+a log-log plot of the errors (similar to what was done in the notebook BVP1),
+using $m+1 = 50,~100,~200,~400,~800$.
+
+
+% uncomment the next two lines if you want to insert solution...
+%\vskip 1cm
+%{\bf Solution:}
+
+% insert your solution here!
+
+
+%--------------------------------------------------------------------------
+
+\end{document}
+
